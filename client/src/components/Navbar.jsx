@@ -5,13 +5,15 @@ import { LoadingContext } from "../context/load.context";
 const Navbar = () => {
   let token = localStorage.getItem("authToken");
 
-  const { user } = useContext(LoadingContext);
+  const { user, getCountries } = useContext(LoadingContext);
   const { logout } = useContext(AuthContext);
   console.log(user);
   return (
     <nav>
       <Link to={"/"}>Home</Link>
-      <Link to={"/countries"}>Countries</Link>
+      <Link onClick={getCountries} to={"/countries"}>
+        Countries
+      </Link>
 
       <Link to={"/posts"}>Posts</Link>
 
