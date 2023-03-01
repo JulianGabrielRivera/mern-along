@@ -3,7 +3,7 @@ import "./App.css";
 
 import Login from "./pages/Login";
 import Countries from "./pages/Countries";
-import EditPost from "./pages/Editpost";
+import EditPost from "./pages/EditPost";
 import EditProfile from "./pages/EditProfile";
 import Home from "./pages/Home";
 import NewPost from "./pages/NewPost";
@@ -12,6 +12,7 @@ import Posts from "./pages/Posts";
 import Profile from "./pages/Profile";
 import SignUp from "./pages/SignUp";
 import Navbar from "./components/Navbar";
+import CountryDetails from "./pages/CountryDetails";
 const App = () => {
   let token = localStorage.getItem("authToken");
 
@@ -25,13 +26,14 @@ const App = () => {
   return (
     <div>
       <Navbar />
-      <Route path="/" element={<Home />} />
-      <Route path="/countries" element={<Countries />} />
-
       <Routes>
-        <Route element={<LoggedIn />}>
-          <Route path="/posts" element={<Posts />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/countries" element={<Countries />} />
 
+        <Route path="/country/:id" element={<CountryDetails />} />
+        <Route path="/posts" element={<Posts />} />
+
+        <Route element={<LoggedIn />}>
           <Route path="/other-profile/:id" element={<OtherProfile />} />
           <Route path="/post/:id" element={<EditPost />} />
 
