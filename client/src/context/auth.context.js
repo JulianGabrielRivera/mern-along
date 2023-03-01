@@ -19,6 +19,7 @@ const AuthProvider = ({ children }) => {
       get("/auth/verify")
         .then((results) => {
           console.log("Are we logged in?", results.data);
+
           setUser(results.data);
         })
         .catch((err) => {

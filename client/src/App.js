@@ -14,13 +14,14 @@ import SignUp from "./pages/SignUp";
 import Navbar from "./components/Navbar";
 import CountryDetails from "./pages/CountryDetails";
 const App = () => {
-  let token = localStorage.getItem("authToken");
-
   const LoggedIn = () => {
+    let token = localStorage.getItem("authToken");
     return token ? <Outlet /> : <Navigate to="/" />;
   };
 
   const NotLoggedIn = () => {
+    let token = localStorage.getItem("authToken");
+
     return !token ? <Outlet /> : <Navigate to="/" />;
   };
   return (
@@ -40,7 +41,7 @@ const App = () => {
           <Route path="/edit-profile/:id" element={<EditProfile />} />
 
           <Route path="/new-post" element={<NewPost />} />
-          <Route path="/profile" element={<Profile />} />
+          <Route path="/profile/:id" element={<Profile />} />
         </Route>
         <Route element={<NotLoggedIn />}>
           <Route path="/signup" element={<SignUp />} />

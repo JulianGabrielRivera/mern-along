@@ -1,10 +1,13 @@
 import { Link } from "react-router-dom";
 import { useContext } from "react";
+import { AuthContext } from "../context/auth.context";
 import { LoadingContext } from "../context/load.context";
 const Navbar = () => {
   let token = localStorage.getItem("authToken");
 
   const { user } = useContext(LoadingContext);
+  const { logout } = useContext(AuthContext);
+  console.log(user);
   return (
     <nav>
       <Link to={"/"}>Home</Link>
@@ -14,8 +17,9 @@ const Navbar = () => {
 
       {token ? (
         <>
-          <Link to={`/profile/${user._id}`}>Profile</Link>
+          {user && <Link to={`/profile/${user._id}`}>Profile</Link>}{" "}
           <Link to={"/new-post"}>New Post</Link>
+          <button onClick={logout}>logout</button>
         </>
       ) : (
         <>

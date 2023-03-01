@@ -40,7 +40,7 @@ router.post("/signup", (req, res, next) => {
             });
             res.json({
               token: token,
-              id: createdUser._id,
+              _id: createdUser._id,
               message: `Welcome ${createdUser.name}`,
             });
           })
@@ -90,8 +90,8 @@ router.post("/login", (req, res, next) => {
         });
         res.json({
           token: token,
-          id: foundUser._id,
-          message: `Welcome ${foundUser.email}`,
+          _id: foundUser._id,
+          message: `Welcome ${foundUser.name}`,
         });
       } else {
         return res
