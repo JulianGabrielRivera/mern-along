@@ -77,6 +77,11 @@ router.post("/login", (req, res, next) => {
           _id: foundUser._id,
           email: foundUser.email,
           name: foundUser.name,
+          profile_image: foundUser.profile_image,
+          city: foundUser.city,
+          age: foundUser.age,
+          countries_visited: foundUser.countries_visited,
+          posts: foundUser.posts,
         };
 
         const token = jwt.sign(payload, process.env.SECRET, {
