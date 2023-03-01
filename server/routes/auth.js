@@ -25,18 +25,24 @@ router.post("/signup", (req, res, next) => {
         User.create({
           password: hashedPass,
           email: req.body.email,
+          name: req.body.name,
         })
           .then((createdUser) => {
             const payload = {
               _id: createdUser._id,
               email: createdUser.email,
+              name: createdUser.name,
             };
 
             const token = jwt.sign(payload, process.env.SECRET, {
               algorithm: "HS256",
               expiresIn: "24hr",
             });
-            res.json({ token: token, id: createdUser._id });
+            res.json({
+              token: token,
+              id: createdUser._id,
+              message: `Welcome ${createdUser.name}`,
+            });
           })
           .catch((err) => {
             res.status(400).json(err.message);
@@ -70,6 +76,7 @@ router.post("/login", (req, res, next) => {
         const payload = {
           _id: foundUser._id,
           email: foundUser.email,
+          name: foundUser.name,
         };
 
         const token = jwt.sign(payload, process.env.SECRET, {
